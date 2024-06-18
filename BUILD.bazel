@@ -1,0 +1,21 @@
+load("@aspect_rules_py//py:defs.bzl", "py_library", aspect_py_test = "py_test")
+load("@rules_python//python:py_test.bzl", "py_test")
+
+py_library(
+    name = "lib",
+    srcs = ["lib.py"]
+)
+
+aspect_py_test(
+    name = "lib_test_aspect",
+    srcs = ["lib_test.py"],
+    deps = [":lib"],
+    size = "small",
+)
+
+py_test(
+    name = "lib_test",
+    srcs = ["lib_test.py"],
+    deps = [":lib"],
+    size = "small",
+)
